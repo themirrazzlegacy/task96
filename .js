@@ -314,8 +314,26 @@ function domIsGameingLauncher(e){
 function domIsTextPad(e){
     return Boolean(e.querySelector(".textpad-app"))
 }
-
-function getTaskNameBeta(app) {
+function getTaskNameBeta(app){
+    var name=""
+    if(app.taskName) {
+        name += app.taskName+" ("
+    if(app.constructor){
+        if(app.constructor.name) {
+            name+=app.constructor.name
+        } else {
+            name+="PID$_"+app.appId
+        }
+    } else {
+        name+="PID$_"+app.appId
+    }
+    if(app.taskName) {
+        name+=")"
+    }
+        name+="["+app.appId+"]"
+        return name
+}
+function getTaskNameBetaa(app) {
     var name="Task with id "+app.appId
     var named=false
     if(app.taskName) {
