@@ -90,7 +90,7 @@ class TaskManagerApp extends WApplication {
                     {
                         id:"end-task",
                         text:"End Task Tree",
-                        action: function(e,d){
+                        action: async function(e,d){
                             displayingWarning=false;
                             warning.wnd.onclose=null
                             warning.wnd.close()
@@ -316,8 +316,7 @@ function domIsTextPad(e){
 }
 function getTaskNameBeta(app){
     var name=""
-    if(app.taskName) {
-        name += app.taskName+" ("
+
     if(app.constructor){
         if(app.constructor.name) {
             name+=app.constructor.name
@@ -327,10 +326,7 @@ function getTaskNameBeta(app){
     } else {
         name+="PID$_"+app.appId
     }
-    if(app.taskName) {
-        name+=")"
-    }
-        name+="["+app.appId+"]"
+        name+=" <"+app.appId+">"
         return name
 }
 function getTaskNameBetaa(app) {
